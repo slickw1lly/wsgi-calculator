@@ -84,10 +84,8 @@ def multiply(*args):
 
 def divide(*args):
     """ Returns a STRING with the division of the arguments """
-    try:
-        return str(args[0] / args[1])
-    except ZeroDivisionError:
-        return 'BAM, GG!'
+    return str(args[0] / args[1])
+    
 
 
 def resolve_path(path):
@@ -137,6 +135,9 @@ def application(environ, start_response):
     except NameError:
         status = "404 Not Found"
         body = "<h1>Not Found</h1>"
+    except ZeroDivisionError:
+        status = "400 Bad Request"
+        body = 'BAM, GG!'
     except Exception:
         status = "500 Internal Server Error"
         body = "<h1>Internal Server Error</h1>"
